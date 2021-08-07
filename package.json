@@ -1,0 +1,25 @@
+{
+  "name": "typescript-compiler-test",
+  "version": "1.0.0",
+  "description": "Testing the typescript compiler to generate typings from JS files",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc src/index.ts --allowJs --outDir dist/",
+    "watch": "npx tsc --watch --allowJs src/index.ts --outDir dist/",
+    "start": "(npm run watch &) && npx nodemon dist/index.js",
+    "pregen-types": "rm -rf src/javascriptSrc/*.d.ts",
+    "gen-types": "npm run pregen-types && npx tsc src/javascriptSrc/** --allowJs --declaration --emitDeclarationOnly ",
+    "//": "--outDir src/javascriptSrc/typings",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "no"
+  },
+  "author": "Miquel Àngel Román Colom",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "typescript": "^4.3.5"
+  }
+}
